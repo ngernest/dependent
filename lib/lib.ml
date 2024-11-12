@@ -60,7 +60,7 @@ let rec typeof (e : expr) : expr =
     let x = gensym () in 
     Pi (t, fun t' -> typeof @@ body (Axiom (x, t')))
   | Pi (t, _body) -> 
-    let t' = typeof t in 
+    let t' : expr = typeof t in 
     begin match t' with 
     | U -> failwith "TODO: continue!"
     | _ -> failwith @@ 
@@ -68,3 +68,5 @@ let rec typeof (e : expr) : expr =
       (to_string t) (to_string t')
     end
   | _ -> failwith "TODO"
+
+  
